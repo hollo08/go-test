@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	tls, err := credentials.NewClientTLSFromFile("client/cert/server.crt", "wukou")
+	tls, err := credentials.NewClientTLSFromFile("client/cert/server.crt", "stone")
 
 	if err != nil {
 		log.Fatal("客户端获取证书失败: ", err)
