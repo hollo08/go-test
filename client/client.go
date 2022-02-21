@@ -20,7 +20,7 @@ func main() {
 	//}
 	cert, _ := tls.LoadX509KeyPair("client/cert/ca.crt", "client/cert/ca.key")
 	certPool := x509.NewCertPool()
-	ca, _ := ioutil.ReadFile("cert/ca.crt")
+	ca, _ := ioutil.ReadFile("client/cert/ca.crt")
 	certPool.AppendCertsFromPEM(ca)
 
 	creds := credentials.NewTLS(&tls.Config{
