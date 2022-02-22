@@ -10,11 +10,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net"
-	"test/service/product"
+	"test/server/product"
 )
 
 func main() {
-	//tls, err := credentials.NewServerTLSFromFile("service/cert/22server.crt", "service/cert/22server_no_password.key")
+	//tls, err := credentials.NewServerTLSFromFile("server/cert/22server.crt", "server/cert/22server_no_password.key")
 	//if err != nil {
 	//	log.Fatal("服务端获取证书失败: ", err)
 	//}
@@ -36,7 +36,7 @@ func main() {
 	product.RegisterProdServiceServer(rpcServer, new(product.ProdService))
 
 	// 3. 新建一个listener，以tcp方式监听8082端口
-	listener, err := net.Listen("tcp", "localhost:8082")
+	listener, err := net.Listen("tcp", "localhost:8083")
 	if err != nil {
 		log.Fatal("服务监听端口失败", err)
 	}

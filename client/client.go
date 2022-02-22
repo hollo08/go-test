@@ -31,7 +31,7 @@ func main() {
 
 	// 1. 新建连接，端口是服务端开放的8082端口
 	// 并且添加grpc.WithInsecure()，不然没有证书会报错
-	conn, err := grpc.Dial("localhost:8082", grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial("localhost:8083", grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -155,12 +155,12 @@ func file_Product_proto_rawDescGZIP() []byte {
 
 var file_Product_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_Product_proto_goTypes = []interface{}{
-	(*ProductRequest)(nil),  // 0: service.ProductRequest
-	(*ProductResponse)(nil), // 1: service.ProductResponse
+	(*ProductRequest)(nil),  // 0: server.ProductRequest
+	(*ProductResponse)(nil), // 1: server.ProductResponse
 }
 var file_Product_proto_depIdxs = []int32{
-	0, // 0: service.ProdService.GetProductStock:input_type -> service.ProductRequest
-	1, // 1: service.ProdService.GetProductStock:output_type -> service.ProductResponse
+	0, // 0: server.ProdService.GetProductStock:input_type -> server.ProductRequest
+	1, // 1: server.ProdService.GetProductStock:output_type -> server.ProductResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -227,7 +227,7 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// ProdServiceClient is the client API for ProdService service.
+// ProdServiceClient is the client API for ProdService server.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ProdServiceClient interface {
@@ -245,14 +245,14 @@ func NewProdServiceClient(cc grpc.ClientConnInterface) ProdServiceClient {
 
 func (c *prodServiceClient) GetProductStock(ctx context.Context, in *ProductRequest, opts ...grpc.CallOption) (*ProductResponse, error) {
 	out := new(ProductResponse)
-	err := c.cc.Invoke(ctx, "/service.ProdService/GetProductStock", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/server.ProdService/GetProductStock", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ProdServiceServer is the server API for ProdService service.
+// ProdServiceServer is the server API for ProdService server.
 type ProdServiceServer interface {
 	// 定义方法
 	GetProductStock(context.Context, *ProductRequest) (*ProductResponse, error)
@@ -280,7 +280,7 @@ func _ProdService_GetProductStock_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ProdService/GetProductStock",
+		FullMethod: "/server.ProdService/GetProductStock",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProdServiceServer).GetProductStock(ctx, req.(*ProductRequest))
@@ -289,7 +289,7 @@ func _ProdService_GetProductStock_Handler(srv interface{}, ctx context.Context, 
 }
 
 var _ProdService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "service.ProdService",
+	ServiceName: "server.ProdService",
 	HandlerType: (*ProdServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
