@@ -18,9 +18,9 @@ func main() {
 	//if err != nil {
 	//	log.Fatal("客户端获取证书失败: ", err)
 	//}
-	cert, _ := tls.LoadX509KeyPair("client/cert/ca.crt", "client/cert/ca.key")
+	cert, _ := tls.LoadX509KeyPair("cert/client.pem", "cert/client.pem")
 	certPool := x509.NewCertPool()
-	ca, _ := ioutil.ReadFile("client/cert/ca.crt")
+	ca, _ := ioutil.ReadFile("cert/ca.pem")
 	certPool.AppendCertsFromPEM(ca)
 
 	creds := credentials.NewTLS(&tls.Config{
@@ -31,7 +31,7 @@ func main() {
 
 	// 1. 新建连接，端口是服务端开放的8082端口
 	// 并且添加grpc.WithInsecure()，不然没有证书会报错
-	conn, err := grpc.Dial(":8082", grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial("localhost:8082", grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatal(err)
 	}

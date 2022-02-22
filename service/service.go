@@ -18,9 +18,9 @@ func main() {
 	//if err != nil {
 	//	log.Fatal("服务端获取证书失败: ", err)
 	//}
-	cert, _ := tls.LoadX509KeyPair("service/cert/server.pem", "service/cert/server.key")
+	cert, _ := tls.LoadX509KeyPair("cert/server.pem", "cert/server.key")
 	certPool := x509.NewCertPool()
-	ca, _ := ioutil.ReadFile("service/cert/server.pem")
+	ca, _ := ioutil.ReadFile("cert/ca.pem")
 	certPool.AppendCertsFromPEM(ca)
 
 	creds := credentials.NewTLS(&tls.Config{
@@ -36,7 +36,7 @@ func main() {
 	product.RegisterProdServiceServer(rpcServer, new(product.ProdService))
 
 	// 3. 新建一个listener，以tcp方式监听8082端口
-	listener, err := net.Listen("tcp", ":8082")
+	listener, err := net.Listen("tcp", "localhost:8082")
 	if err != nil {
 		log.Fatal("服务监听端口失败", err)
 	}
