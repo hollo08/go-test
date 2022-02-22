@@ -18,7 +18,7 @@ func main() {
 	//if err != nil {
 	//	log.Fatal("客户端获取证书失败: ", err)
 	//}
-	cert, _ := tls.LoadX509KeyPair("cert/client.pem", "cert/client.pem")
+	cert, _ := tls.LoadX509KeyPair("cert/client.pem", "cert/client.key")
 	certPool := x509.NewCertPool()
 	ca, _ := ioutil.ReadFile("cert/ca.pem")
 	certPool.AppendCertsFromPEM(ca)
