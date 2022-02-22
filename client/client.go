@@ -13,25 +13,27 @@ import (
 )
 
 func main() {
-	//tls, err := credentials.NewClientTLSFromFile("client/cert/ssserver.crt", "stone")
-
+	//creds, err := credentials.NewClientTLSFromFile("client/cert/ca.pem", "stone")
+	//
 	//if err != nil {
 	//	log.Fatal("客户端获取证书失败: ", err)
 	//}
-	cert, _ := tls.LoadX509KeyPair("cert/client.pem", "cert/client.key")
+
+
+	cert, _ := tls.LoadX509KeyPair("client/cert/client.pem", "client/cert/client.key")
 	certPool := x509.NewCertPool()
-	ca, _ := ioutil.ReadFile("cert/ca.pem")
+	ca, _ := ioutil.ReadFile("client/cert/ca.pem")
 	certPool.AppendCertsFromPEM(ca)
 
 	creds := credentials.NewTLS(&tls.Config{
 		Certificates: []tls.Certificate{cert},
-		ServerName:   "localhost",
+		ServerName:   "stone",
 		RootCAs:      certPool,
 	})
 
 	// 1. 新建连接，端口是服务端开放的8082端口
 	// 并且添加grpc.WithInsecure()，不然没有证书会报错
-	conn, err := grpc.Dial("localhost:8083", grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial(":8083", grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -15,13 +15,14 @@ import (
 )
 
 func main() {
-	//tls, err := credentials.NewServerTLSFromFile("server/cert/22server.crt", "server/cert/22server_no_password.key")
+	//creds, err :=  credentials.NewServerTLSFromFile("server/cert/server.pem", "server/cert/server.key")
 	//if err != nil {
 	//	log.Fatal("服务端获取证书失败: ", err)
 	//}
-	cert, _ := tls.LoadX509KeyPair("cert/server.pem", "cert/server.key")
+
+	cert, _ := tls.LoadX509KeyPair("server/cert/server.pem", "server/cert/server.key")
 	certPool := x509.NewCertPool()
-	ca, _ := ioutil.ReadFile("cert/ca.pem")
+	ca, _ := ioutil.ReadFile("server/cert/ca.pem")
 	certPool.AppendCertsFromPEM(ca)
 
 	creds := credentials.NewTLS(&tls.Config{
@@ -37,7 +38,7 @@ func main() {
 	product.RegisterProdServiceServer(rpcServer, new(product.ProdService))
 
 	// 3. 新建一个listener，以tcp方式监听8082端口
-	listener, err := net.Listen("tcp", "localhost:8083")
+	listener, err := net.Listen("tcp", ":8083")
 	if err != nil {
 		log.Fatal("服务监听端口失败", err)
 	}
