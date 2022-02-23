@@ -7,6 +7,10 @@
 package token
 
 import (
+	context "context"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -294,4 +298,120 @@ func file_token_proto_init() {
 	file_token_proto_rawDesc = nil
 	file_token_proto_goTypes = nil
 	file_token_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// PingClient is the client API for Ping service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type PingClient interface {
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
+	SayHello(ctx context.Context, in *PingMessage, opts ...grpc.CallOption) (*PingMessage, error)
+}
+
+type pingClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewPingClient(cc grpc.ClientConnInterface) PingClient {
+	return &pingClient{cc}
+}
+
+func (c *pingClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error) {
+	out := new(LoginReply)
+	err := c.cc.Invoke(ctx, "/server.Ping/Login", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pingClient) SayHello(ctx context.Context, in *PingMessage, opts ...grpc.CallOption) (*PingMessage, error) {
+	out := new(PingMessage)
+	err := c.cc.Invoke(ctx, "/server.Ping/SayHello", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// PingServer is the server API for Ping service.
+type PingServer interface {
+	Login(context.Context, *LoginRequest) (*LoginReply, error)
+	SayHello(context.Context, *PingMessage) (*PingMessage, error)
+}
+
+// UnimplementedPingServer can be embedded to have forward compatible implementations.
+type UnimplementedPingServer struct {
+}
+
+func (*UnimplementedPingServer) Login(context.Context, *LoginRequest) (*LoginReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (*UnimplementedPingServer) SayHello(context.Context, *PingMessage) (*PingMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+}
+
+func RegisterPingServer(s *grpc.Server, srv PingServer) {
+	s.RegisterService(&_Ping_serviceDesc, srv)
+}
+
+func _Ping_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PingServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/server.Ping/Login",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PingServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ping_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PingMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PingServer).SayHello(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/server.Ping/SayHello",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PingServer).SayHello(ctx, req.(*PingMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Ping_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "server.Ping",
+	HandlerType: (*PingServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Login",
+			Handler:    _Ping_Login_Handler,
+		},
+		{
+			MethodName: "SayHello",
+			Handler:    _Ping_SayHello_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "token.proto",
 }

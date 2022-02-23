@@ -24,11 +24,12 @@ func GrpcServer() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	// create a server instance
-	s := api.Server{}
+	//s := api.Server{}等效于new(api.Server)
 	// create a gRPC server object
 	grpcServer := grpc.NewServer()
 	// attach the Ping service to the server
-	api.RegisterPingServer(grpcServer, &s)
+	//api.RegisterPingServer(grpcServer, &s)
+	api.RegisterPingServer(grpcServer, new(api.Server))
 	// start the server
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %s", err)
@@ -43,7 +44,7 @@ func GrpcClient() {
 	}
 	defer conn.Close()
 	c := api.NewPingClient(conn)
-	loginReply, err := c.Login(context.Background(), &api.LoginRequest{Username: "gavin", Password: "gavin"})
+	loginReply, err := c.Login(context.Background(), &api.LoginRequest{Username: "gavin", Password: "gavi"})
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}
