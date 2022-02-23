@@ -13,12 +13,6 @@ import (
 )
 
 func main() {
-	//creds, err := credentials.NewClientTLSFromFile("client/cert/ca.pem", "stone")
-	//
-	//if err != nil {
-	//	log.Fatal("客户端获取证书失败: ", err)
-	//}
-
 	cert, _ := tls.LoadX509KeyPair("client/cert/client.pem", "client/cert/client.key")
 	certPool := x509.NewCertPool()
 	ca, _ := ioutil.ReadFile("client/cert/ca.pem")
@@ -26,7 +20,7 @@ func main() {
 
 	creds := credentials.NewTLS(&tls.Config{
 		Certificates: []tls.Certificate{cert},
-		ServerName:   "localhost",
+		ServerName:   "a.bolo.me",
 		RootCAs:      certPool,
 	})
 

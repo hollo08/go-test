@@ -15,11 +15,6 @@ import (
 )
 
 func main() {
-	//creds, err :=  credentials.NewServerTLSFromFile("server/cert/server.pem", "server/cert/server.key")
-	//if err != nil {
-	//	log.Fatal("服务端获取证书失败: ", err)
-	//}
-
 	cert, _ := tls.LoadX509KeyPair("server/cert/server.pem", "server/cert/server.key")
 	certPool := x509.NewCertPool()
 	ca, _ := ioutil.ReadFile("server/cert/ca.pem")
