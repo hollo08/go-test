@@ -7,6 +7,7 @@ import (
 	"crypto/x509"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/reflection"
 	"io/ioutil"
 	"log"
 	"net"
@@ -30,6 +31,8 @@ func main() {
 
 	// 2. 将刚刚我们新建的ProdService注册进去
 	product.RegisterProdServiceServer(rpcServer, new(product.ProdService))
+
+	reflection.Register(rpcServer)
 
 	// 3. 新建一个listener，以tcp方式监听8082端口
 	listener, err := net.Listen("tcp", ":8083")
