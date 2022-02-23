@@ -3,10 +3,6 @@ option go_package = "/token";
 
 package server;
 
-service Ping {
-  rpc Login (LoginRequest) returns (LoginReply) {}
-  rpc SayHello(PingMessage) returns (PingMessage) {}
-}
 
 message LoginRequest{
   string username=1;
@@ -18,4 +14,10 @@ message LoginReply{
 }
 message PingMessage {
   string greeting = 1;
+}
+
+
+service Ping {
+  rpc Login (LoginRequest) returns (LoginReply) {}
+  rpc SayHello(PingMessage) returns (PingMessage) {}
 }
