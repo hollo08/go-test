@@ -1,7 +1,6 @@
 package main
 //https://www.cnblogs.com/baoshu/p/13507260.html#head4
 //https://blog.csdn.net/cuichenghd/article/details/109230584
-//https://blog.csdn.net/cuichenghd/article/details/109230584
 
 import (
 	"crypto/tls"
