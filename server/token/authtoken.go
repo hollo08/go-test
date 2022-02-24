@@ -24,7 +24,7 @@ func CreateToken(userName string) (tokenString string) {
 	return tokenString
 }
 
-// AuthToekn 自定义认证
+// AuthToekn 自定义认证 实现了credentials.PerRPCCredentials接口
 type AuthToekn struct {
 	Token string
 }

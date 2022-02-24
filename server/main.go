@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	api "test/server/token"
+	token "test/server/token"
 )
 
 func main() {
@@ -24,12 +24,12 @@ func GrpcServer() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	// create a server instance
-	//s := api.Server{}等效于new(api.Server)
+	//s := token.Server{}等效于new(token.Server)
 	// create a gRPC server object
 	grpcServer := grpc.NewServer()
 	// attach the Ping service to the server
-	//api.RegisterPingServer(grpcServer, &s)
-	api.RegisterPingServer(grpcServer, new(api.Server))
+	//token.RegisterPingServer(grpcServer, &s)
+	token.RegisterPingServer(grpcServer, new(token.Server))
 	// start the server
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %s", err)
@@ -43,22 +43,22 @@ func GrpcClient() {
 		log.Fatalf("did not connect: %s", err)
 	}
 	defer conn.Close()
-	c := api.NewPingClient(conn)
-	loginReply, err := c.Login(context.Background(), &api.LoginRequest{Username: "gavin", Password: "gavi"})
+	c := token.NewPingClient(conn)
+	loginReply, err := c.Login(context.Background(), &token.LoginRequest{Username: "gavin", Password: "gavin"})
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}
-	fmt.Println("Login Reply:", loginReply)
+	fmt.Println("Login Reply:", loginReply.Status)
 	//Call SayHello
-	requestToken := new(api.AuthToekn)
+	requestToken := new(token.AuthToekn)
 	requestToken.Token = loginReply.Token
 	conn, err = grpc.Dial(":7777", grpc.WithInsecure(), grpc.WithPerRPCCredentials(requestToken))
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 	}
 	defer conn.Close()
-	c = api.NewPingClient(conn)
-	helloreply, err := c.SayHello(context.Background(), &api.PingMessage{Greeting: "foo"})
+	c = token.NewPingClient(conn)
+	helloreply, err := c.SayHello(context.Background(), &token.PingMessage{Greeting: "foo"})
 	if err != nil {
 		log.Fatalf("Error when calling SayHello: %s", err)
 	}

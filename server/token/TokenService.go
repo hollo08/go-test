@@ -3,6 +3,8 @@ package token
 import (
 	"fmt"
 	"golang.org/x/net/context"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 // Server represents the gRPC server
@@ -16,7 +18,7 @@ func (s *Server) Login(ctx context.Context, in *LoginRequest) (*LoginReply, erro
 		return &LoginReply{Status: "200", Token: tokenString}, nil
 
 	} else {
-		return &LoginReply{Status: "403", Token: ""}, nil
+		return &LoginReply{Status: "403", Token: ""}, status.Error(codes.Unauthenticated, "user or pwd error!")
 	}
 
 }

@@ -3,12 +3,14 @@ package product
 import (
 	"context"
 	"fmt"
+	token "test/server/token"
 )
 
 type ProdService struct {
 }
 
 func (ps *ProdService) GetProductStock(ctx context.Context, request *ProductRequest) (*ProductResponse, error) {
-	fmt.Printf("request param is : %d \n", request.GetProdId())
+	user := token.CheckAuth(ctx)
+	fmt.Printf("rquest name is ：%s and request param is : %d \n",user, request.GetProdId())
 	return &ProductResponse{ProdStock: request.ProdId}, nil
 }

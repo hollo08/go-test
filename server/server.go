@@ -1,7 +1,6 @@
 package main
 //https://www.cnblogs.com/baoshu/p/13507260.html#head4
-//https://blog.csdn.net/cuichenghd/article/details/109230584
-
+//https://www.cnblogs.com/rickiyang/p/14989375.html
 import (
 	"crypto/tls"
 	"crypto/x509"
@@ -12,6 +11,7 @@ import (
 	"log"
 	"net"
 	"test/server/product"
+	"test/server/token"
 )
 
 func main() {
@@ -31,6 +31,7 @@ func main() {
 
 	// 2. 将刚刚我们新建的ProdService注册进去
 	product.RegisterProdServiceServer(rpcServer, new(product.ProdService))
+	token.RegisterPingServer(rpcServer, new(token.Server))
 
 	reflection.Register(rpcServer)
 
