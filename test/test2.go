@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var i, j int
@@ -18,4 +21,5 @@ func main() {
 		fmt.Printf("%d  是素数\n", i);
 		//}
 	}
+	fmt.Println(strings.ContainsAny("in failure", "s g"))
 }
