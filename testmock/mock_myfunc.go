@@ -2,7 +2,7 @@
 // Source: myfunc.go
 
 // Package mock_testmock is a generated GoMock package.
-package mock_testmock
+package testmock
 
 import (
 	reflect "reflect"
