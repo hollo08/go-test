@@ -11,7 +11,7 @@ func Test_getUser(t *testing.T) {
 	mockCtl := gomock.NewController(t)
 	mockMyFunc := testmock.NewMockMyFunc(mockCtl)
 	mockMyFunc.EXPECT().GetInfo().Return("xiaomotong")
-	v := testmock.getUser(mockMyFunc)
+	v := testmock.GetUser(mockMyFunc)
 	if v == "xiaomotong" {
 		fmt.Println("get user right!")
 	} else {
