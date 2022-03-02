@@ -1,4 +1,4 @@
-module test
+module github.com/hollo08/go-test
 
 go 1.17
 

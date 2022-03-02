@@ -10,6 +10,15 @@ func getSequence() func() int {
 	}
 }
 
+type aaa uint8
+
+const (
+	a = 1
+	b = 2
+	aa aaa = iota
+	bb
+)
+
 func main(){
 	/* nextNumber 为一个函数，函数 i 为 0 */
 	nextNumber := getSequence()
@@ -23,4 +32,8 @@ func main(){
 	nextNumber1 := getSequence()
 	fmt.Println(nextNumber1())
 	fmt.Println(nextNumber1())
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(aa)
+	fmt.Println(bb)
 }
