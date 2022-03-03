@@ -6,7 +6,7 @@ import "github.com/go-playground/validator/v10"
 func main() {
 	validate := validator.New()
 	type User struct {
-		ID     int64  `json:"id" validate:"gt=0"`
+		ID     int64  `json:"id" validate:"gt=10"`
 		Name   string `json:"name" validate:"required"`
 		Gender string `json:"gender" validate:"required,oneof=man woman"`
 		Age    uint8  `json:"age" validate:"required,gte=0,lte=130"`

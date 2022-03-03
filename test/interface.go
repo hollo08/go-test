@@ -43,21 +43,18 @@ func main() {
 	fmt.Println("This person name is", p1.GetName())
 
 	var p Person = &Student{20, "Elon"}
-
 	fmt.Println("This person name is", p.GetName())
-
 	fmt.Println("This person age is", p.GetAge())
 
 	var c Car = &Student{1, "BMW"}
-
 	fmt.Println("This car name is", c.GetName())
-
 	fmt.Println("This car age is", c.GetAge())
 
 	switch t := p.(type) {
 		case *Student:
 			fmt.Printf("student %T \n", t)
 	}
+
 	if  t,ok := c.(*Student); ok{
 		fmt.Printf("t implements Student %T", t)
 	}
