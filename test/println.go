@@ -54,4 +54,7 @@ func main() {
 	fmt.Println(s)
 	//你可以使用 Fprintf 来格式化并输出到 io.Writers而不是 os.Stdout。
 	fmt.Fprintf(os.Stderr, "an %s\n", "error")
+	lst := []int64{111,222,333}
+	s = fmt.Sprint("批量添加ID为%v的", lst)
+	fmt.Println(s)
 }
