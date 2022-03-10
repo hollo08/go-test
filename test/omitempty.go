@@ -16,7 +16,7 @@ func main() {
     p1 := Person2{
         Name: "taoge",
         Age: 30,
-        Type: 0,
+        Type: 1,
     }
     
     data, err := json.Marshal(p1)
