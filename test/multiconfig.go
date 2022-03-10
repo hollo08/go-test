@@ -18,7 +18,7 @@ type DemoConfig struct {
 
 func main() {
     fmt.Println("Hello, World!")
-    m := multiconfig.NewWithPath("config.toml") // supports TOML, JSON and YAML
+    m := multiconfig.NewWithPath("G:\\gowork\\src\\go-test\\test\\config.toml") // supports TOML, JSON and YAML
     
     serverConf := new(Server)
     err := m.Load(serverConf) // Check for error
