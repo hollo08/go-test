@@ -15,6 +15,6 @@ func main() {
 	c := make(chan int)
 	go sum1(s[:len(s)/2], c)
 	go sum1(s[len(s)/2:], c)
-	x, y := <-c, <-c // receive from c
-	fmt.Println(x, y, x+y)
+	x, y, z := <-c, <-c, <-c // receive from c
+	fmt.Println(x, y, z, x+y+z)
 }
