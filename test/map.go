@@ -13,6 +13,21 @@ func main(){
 	test2()
 	test3()
 	test4()
+	test5()
+}
+type LinkTypes int32
+type tests struct {
+	a string
+	b LinkTypes
+}
+func test5(){
+	var a = make(map[string]tests, 0)
+	a["a"] = tests{a:"a", b:2}
+	a["b"] = tests{a:"a"}
+	if c, ok:= a["a"]; ok{
+		fmt.Printf("c value is %v \n", int32(c.b))
+	}
+
 }
 
 func test1(x []int){

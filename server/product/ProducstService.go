@@ -3,7 +3,7 @@ package product
 import (
 	"context"
 	"fmt"
-	token "test/server/token"
+	token "github.com/hollo08/go-test/server/token"
 )
 
 type ProdService struct {

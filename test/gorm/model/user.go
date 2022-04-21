@@ -1,12 +1,17 @@
 package model
 
-import "github.com/jinzhu/gorm"
+import (
+	"database/sql"
+	"github.com/jinzhu/gorm"
+)
+
+
 
 type User struct {
 	gorm.Model
 	Name string
 	Country string
-	Age int32
+	Age sql.NullInt16
 }
 
 type Product struct {

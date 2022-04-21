@@ -5,14 +5,19 @@ import (
 	"github.com/gin-gonic/gin/testdata/protoexample"
 )
 
+type testjson struct {
+	LinkType int32 `json:"linkTypesss"`
+	LinkTypeStr string `json:"linkTypeStr, string"`
+}
 // 多种响应方式
 func main() {
 	// 1.创建路由
 	// 默认使用了2个中间件Logger(), Recovery()
 	r := gin.Default()
 	// 1.json
+	a := &testjson{LinkType: 1, LinkTypeStr: "ssssxx你好啊"}
 	r.GET("/someJSON", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "someJSON", "status": 200})
+		c.JSON(200, a)
 	})
 	// 2. 结构体响应
 	r.GET("/someStruct", func(c *gin.Context) {

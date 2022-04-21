@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	token "github.com/hollo08/go-test/server/token"
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	token "test/server/token"
 )
 
 func main() {

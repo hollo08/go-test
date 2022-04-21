@@ -5,14 +5,14 @@ package main
 import (
 	"crypto/tls"
 	"crypto/x509"
+	"github.com/hollo08/go-test/server/product"
+	"github.com/hollo08/go-test/server/token"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	"io/ioutil"
 	"log"
 	"net"
-	"test/server/product"
-	"test/server/token"
 )
 
 func main() {
