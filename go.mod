@@ -3,9 +3,7 @@ module github.com/hollo08/go-test
 go 1.17
 
 require google.golang.org/grpc v1.44.0
-
 require github.com/jinzhu/gorm v1.9.16
-
 require github.com/Shopify/sarama v1.26.4
 
 require (

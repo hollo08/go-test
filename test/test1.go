@@ -36,4 +36,6 @@ func main(){
 	fmt.Println(b)
 	fmt.Println(aa)
 	fmt.Println(bb)
+	var a int64
+	print(a)
 }
