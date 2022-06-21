@@ -14,6 +14,8 @@ type Books struct {
 }
 
 func main(){
+	book1 := &Books{}
+	fmt.Println(book1.title == "")
 	//testStruct1()
 	book := testStruct2()
 	fmt.Printf("book title is %s \n", book.title)
