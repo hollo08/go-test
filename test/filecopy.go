@@ -48,14 +48,14 @@ func getAllFiles(files []*fs.FileInfo, dir string){
 		}else {
 			files = append(files, &file)
 			fmt.Println(len(files))
-			//srcFile := dir + "\\" + file.Name()
-			//dstFile := "C:\\迅雷下载\\翠微居.河图\\新建文件夹" + "\\" + file.Name()
-			//_, err := CopyFile(dstFile, srcFile)
-			//if err != nil {
-			//	fmt.Println("文件拷贝错误",err)
-			//} else {
-			//	fmt.Println("文件拷贝成功")
-			//}
+			srcFile := dir + "\\" + file.Name()
+			dstFile := "C:\\迅雷下载\\小说包 密码123\\新建文件夹" + "\\" + file.Name()
+			_, err := CopyFile(dstFile, srcFile)
+			if err != nil {
+				fmt.Println("文件拷贝错误",err)
+			} else {
+				fmt.Println("文件拷贝成功")
+			}
 		}
 	}
 }
@@ -67,13 +67,13 @@ func TestSlice(a *[]string){
 
 
 func main() {
-	var aa []string
-	dir := "C:\\迅雷下载\\翠微居.河图\\翠微居980M共459本全集"
-	aa = append(aa, dir)
-	//var files []*fs.FileInfo
-	//getAllFiles(files, dir)
-	TestSlice(&aa)
-	fmt.Println(len(aa))
+	//var aa []string
+	dir := "C:\\迅雷下载\\小说包 密码123\\小说包 密码123"
+	//aa = append(aa, dir)
+	var files []*fs.FileInfo
+	getAllFiles(files, dir)
+	//TestSlice(&aa)
+	//fmt.Println(len(aa))
 	//var files []string
 	//filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 	//	files = append(files, path)
