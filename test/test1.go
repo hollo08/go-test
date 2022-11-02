@@ -21,6 +21,7 @@ const (
 	dd
 	ee
 	ff
+	gg
 )
 
 func main() {
