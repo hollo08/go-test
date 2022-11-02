@@ -19,6 +19,7 @@ const (
 	bb
 	cc
 	dd
+	ee
 )
 
 func main() {
