@@ -20,6 +20,7 @@ const (
 	cc
 	dd
 	ee
+	ff
 )
 
 func main() {
