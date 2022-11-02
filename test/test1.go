@@ -41,6 +41,10 @@ func main() {
 	fmt.Println(b)
 	fmt.Println(aa)
 	fmt.Println(bb)
+	fmt.Println(gg)
 	var a int64
-	print(a)
+	fmt.Println(a)
+	var a1 string
+	fmt.Println(a1)
+	fmt.Println("a1")
 }
