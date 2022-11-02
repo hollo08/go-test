@@ -6,17 +6,18 @@ import (
 )
 
 func main() {
-	_,numb,strs := numbers() //只获取函数返回值的后两个
-	fmt.Println(numb,strs)
+	_, numb, strs := numbers() //只获取函数返回值的后两个
+	fmt.Println(numb, strs)
 	//GuessingGame()
 	SearchNum()
 	calCircle()
+	fmt.Println("a3")
 }
 
 //一个可以返回多个值的函数
-func numbers()(int,int,string){
-	a , b , c := 1 , 2 , "str"
-	return a,b,c
+func numbers() (int, int, string) {
+	a, b, c := 1, 2, "str"
+	return a, b, c
 }
 
 func GuessingGame() {
@@ -30,7 +31,7 @@ func GuessingGame() {
 	fmt.Printf("Your number is %d.\n", answer)
 }
 
-func SearchNum(){
+func SearchNum() {
 	x := 10
 	s := []int{3, 6, 8, 11, 45} // 注意已经升序排序
 	pos := sort.Search(len(s), func(i int) bool { return s[i] >= x })
@@ -41,6 +42,6 @@ func SearchNum(){
 	}
 }
 
-func calCircle(){
-	fmt.Printf("a - b = %f \n",0.5/3.14)
+func calCircle() {
+	fmt.Printf("a - b = %f \n", 0.5/3.14)
 }
