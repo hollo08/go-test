@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func getSequence() func() int {
-	i:=0
+	i := 0
 	return func() int {
-		i+=1
+		i += 1
 		return i
 	}
 }
@@ -13,13 +13,14 @@ func getSequence() func() int {
 type aaa uint8
 
 const (
-	a = 1
-	b = 2
+	a      = 1
+	b      = 2
 	aa aaa = iota
 	bb
+	cc
 )
 
-func main(){
+func main() {
 	/* nextNumber 为一个函数，函数 i 为 0 */
 	nextNumber := getSequence()
 
