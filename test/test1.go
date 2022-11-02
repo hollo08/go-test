@@ -18,6 +18,7 @@ const (
 	aa aaa = iota
 	bb
 	cc
+	dd
 )
 
 func main() {
